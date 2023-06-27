@@ -199,7 +199,7 @@ Now we can run: ```php artisan migrate```
   <summary><h2>Trait HasRolesAndPermissions for User model</h2></summary>
 
 - Create new trait in **Traits** folder and name it ```HasRolesAndPermissions```
-- Copy this code in newly created file:
+- Copy this code in the newly created file:
 
       <?php
 
@@ -279,7 +279,7 @@ Now we can run: ```php artisan migrate```
           }
       }
 
-- Now add this trait to User model in ```Models/User.php```
+- Now add this trait to the User model in ```Models/User.php```
 
       class User extends Authenticatable
       {
@@ -290,7 +290,7 @@ Now we can run: ```php artisan migrate```
 <details>
   <summary><h2>Add Custom blade directory for Roles and Permissions</h2></summary>
 
-- Create new service provider 
+- Create a new service provider 
 
       php artisan make:provider RolesServiceProvider
       php artisan make:provider PermissionServiceProvider
@@ -304,10 +304,10 @@ Now we can run: ```php artisan migrate```
           return "<?php endif; ?>";
       });
   
-  Then you can use somthing like this in blade templates:
+  Then you can use something like this in blade templates:
   
       @role('manager') // manager is role
-        Manager Panel html here
+        Manager Panel HTML here
       @endrole
   
 - Copy this code in **PermissionServiceProvider** boot method
@@ -323,9 +323,10 @@ Now we can run: ```php artisan migrate```
           return;
       }
   
-  Then you can use somthing like that in blade templates:
+  Then you can use something like that:
   
         Gate::allows('edit-users'); //edit-user is permission
+        $this->authorize('edit-roles', Auth::user()); //edit-user is permission
   
   
 - **Don't forget** and add **RolesServiceProvider** and **PermissionServiceProvider** to providers list, in **config/app.php** file
